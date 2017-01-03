@@ -30,19 +30,28 @@
 </ul>
 
 <script>
-
+{
   // Select all the list items on the page and convert to array
+  // alt is to use Array.from(document.getElementsByTagName('li'))
+  const lis = [... document.getElementsByTagName('li')];
 
   // Filter for only the elements that contain the word 'flexbox'
+  const flexboxVideos = lis.filter( li => li.textContent.toLowerCase().includes('flexbox') );
 
   // map down to a list of time strings
+  let times = flexboxVideos.map( li => li.dataset.time );
 
   // map to an array of seconds
+  times = times.map( time => {
+    let minuteSeconds = time.split(':');
+    return parseInt(minuteSeconds[0]) * 60 + parseInt(minuteSeconds[1]);
+  });
 
   // reduce to get total
-
+  const total = times.reduce((prev, current) => prev + current, 0);
+  console.log(total);
   // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
-
+}
 </script>
 </body>
 </html>
