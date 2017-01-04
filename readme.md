@@ -138,3 +138,59 @@ Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
 - includes
 - repeat: can create left pad function, will repeat string however much specified
 
+# Destructuring
+- Object
+  - Easily set object properties as variables
+  - Nice for extracting nested data or returning multiple values from a function (by returning object and destructuring immediately)
+  - Can also set default for destructuring
+  ```
+  const nanook = {
+    type: 'cat',
+    likes: 'flopping over',
+    sound: 'purring',
+    hates: 'collars',
+    from: {
+      city: 'SF',
+      state: 'CA',
+      country: 'USA'
+    },
+    contact: {
+      email: 'nanook@gmail.co',
+      twitter: '@roarnookie'
+    }
+  }
+
+  const { type, sound, testDefault = 'test' } = nanook; // saves as type and sound and uses default test for testDefault   
+  const { city:cy, state:st } = nanook.from; // saves as cy and st
+
+  // Function where you don't need to worry about order of parameters
+  function noWorries({ worry = 'nothing', name = 'me', amount = 100 }) {
+    return `${name} is worried about ${worry} by ${amount}%`;
+  }
+
+  noWorries({ worry: "No money", amount: 110 });
+  noWorries({ });
+  ```
+- Array
+  - ignores extra elements
+  - rest operator gives array of rest
+  ```
+  // 'extra element...' is ignored and not saved
+  [name, type, likes] = ['Nanook', 'cat', 'purring', 'extra element not needed']
+
+  // feather, string, cat tree are saved as elements in toys array
+  [officialName, ...toys] = ['Nanook the Awesome', 'feather', 'string', 'cat tree']
+
+  ```
+- Reassignment: creates array and reassign to variables, no need for tmp variable
+  - to switch 2 values: `[firstValue, secondValue] = [secondValue, firstValue]`
+
+# General
+- console
+  - console.table(object) - will display map function in table along with object
+- Objects
+  - if key and value are same name, don't need to specify both
+    - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
+- Function
+  - rest: use ... to store all values as array assigned to variable
+    `function multipleVariable( first, ...rest ) { CODE }`
