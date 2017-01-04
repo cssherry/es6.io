@@ -10,12 +10,11 @@
 
 <!-- /TOC -->
 
-Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
 # Variables
 - Block scope:
   - **let**: can be updated
   - **const**: immutable *binding*, properties of object can be updated
-    - object.freeze(constInstance) will make properties un-updateable
+    - object.freeze(constInstance) will make properties not updatable
   - can'd re-declare multiple times
   - only available within block (if, loop, function, etc)
   - Uses:
@@ -78,7 +77,7 @@ Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
       // one liner without parameter
       () => `name is here`</code>
       </pre>
-  - **Always anonymous function** so not good stacktrace, but can assign to const or variables
+  - **Always anonymous function** so not good stack-trace, but can assign to const or variables
   - **default values** in functions now supported
     <pre class="prettyprint">
     <code class="js">function testDefault(first, second = 'second', third = 'third'){
@@ -103,12 +102,12 @@ Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
     </pre>
 
   - Don't add as prototype function
-  - When need `arguments` obejct
+  - When need `arguments` object
 
 # Template/Strings
   - Template Strings/Literals: uses backticks: ``` `you are ${test}` ``` will write `test` variable into string. Can run JavaScripts inside of ${}
   - **multiline** strings now possible with backticks as well
-  - Can nest template string within template string: map, terniary
+  - Can nest template string within template string: map, ternary
   - to make code more readable, don't nest too many functions inside of backticks, use helper function
 
   ```
