@@ -96,3 +96,39 @@ Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
 
   - Don't add as prototype function
   - When need `arguments` obejct
+
+# Template/Strings
+  - Template Strings/Literals: uses backticks: ``` `you are ${test}` ``` will write `test` variable into string. Can run JavaScripts inside of ${}
+  - **multiline** strings now possible with backticks as well
+  - Can nest template string within template string: map, terniary
+  - to make code more readable, don't nest too many functions inside of backticks, use helper function
+
+  ```
+  function createLi (list) {
+    return list.map( number => `<li> ${number} </li>` ).join('');
+  }
+
+  const template = `
+  <ul>
+  ${ createLi( [1, 2, 3, 4] ) }
+  </ul>
+  `
+  ```
+  - **tag template**
+    - function's first parameter is array of strings in template. Other parameters are the values of inserts for the template (1 less than length of array from first parameter)
+    - can also pass in string, which will then get passed on as a value to the template tag to add custom tags around values, sanitize specific strings, etc
+
+    ```
+    function templateTag(strings, ...values) {
+      let str = strings[0];
+      values.forEach( (string, i) => {
+        str += "these " + values[i] + strings[i + 1];
+      });
+      return str;
+    }
+
+    const first = "oranges";
+    const second = "apples";
+
+    const sentence = templateTag`Comparing ${first} to ${second}`;
+    ```
