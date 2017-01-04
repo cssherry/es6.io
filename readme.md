@@ -132,3 +132,9 @@ Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
 
     const sentence = templateTag`Comparing ${first} to ${second}`;
     ```
+
+# String Improvements
+- startsWith/endsWith: parameters: string to search for, optionally how many characters to ignore at the beginning
+- includes
+- repeat: can create left pad function, will repeat string however much specified
+
