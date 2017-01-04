@@ -1,6 +1,14 @@
-![ES6 for Everyone](https://es6.io/images/es6-facebook-share.png?cool=yah)
+**Table of Contents**
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-# ES6 for Everyone Starter Files
+- [Variables](#variables)
+- [Functions](#functions)
+- [Template/Strings](#templatestrings)
+- [String Improvements](#string-improvements)
+- [Destructuring](#destructuring)
+- [General](#general)
+
+<!-- /TOC -->
 
 Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
 # Variables
