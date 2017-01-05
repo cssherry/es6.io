@@ -6,6 +6,9 @@
 - [Template/Strings](#templatestrings)
 - [String Improvements](#string-improvements)
 - [Destructuring](#destructuring)
+- [For of loop](#for-of-loop)
+- [Array improvements](#array-improvements)
+- [Spread/Rest Operator](#spreadrest-operator)
 - [General](#general)
 
 <!-- /TOC -->
@@ -215,12 +218,47 @@
   }
   ```
 
+# Array improvements
+- from
+  `Array.from(domList)`
+  `Array.from( domList, dom => dom.textContent )`
+- of
+  - Creates array from items passed in
+  - `Array.from(1, 2, 3, 4)` returns `[1, 2, 3, 4]`
+- find (just first instance)
+  - argument is callback that returns true or false for each item in elements
+  `arrayInstance.find(item => item.attribute == 'desired item')`
+- findIndex (just first instance)
+  - good for finding idx for deleting, etc
+  `arrayInstance.findIndex(item => item.attribute == 'desired item')`
+- Useful old methods that return true/false
+  - some
+    `arrayInstance.some(item => item.attribute == 'desired item')`
+  - every
+    `arrayInstance.every(item => item.attribute == 'desired item')`
+
+# Spread/Rest Operator
+- Rest: use ... to store all values as array assigned to variable
+  - Can be used to put all iterable into 1 array
+    `function multipleVariable( first, second, ...rest ) { CODE }`
+  - Deconstruct to array
+    `[name, type, ...toys] = ['Nanook', 'cat', 'feather', 'ball', 'cat tree']`
+- Spread: puts each iterable into element of array
+  - String: `[...'nanook']` turns into `['n', 'a', 'n', 'o', 'o', 'k']`
+  - Array: `[...['test', 1], 'another', ...['oh', 'good']]` turns into `['test', 1, 'another', ''oh', 'good']`
+  - Uses:
+    - Used instead of concatting array
+    - Can be used to copy array
+    - Alternative to Array.from (probably not preferred)
+      `[...document.getElementsByTagName('p')].map( el => el.textContent )`
+    - Slice out element from array (common with react)
+      `[...arrayInstance.slice(0, 5), ...arrayInstance.slice(6)]`
+    - Spread into function
+      - `[1, 2].push(...[3, 4])` instead of `[1, 2].push.apply([1, 2], [3, 4])`
+
 # General
 - console
   - console.table(object) - will display map function in table along with object
 - Objects
   - if key and value are same name, don't need to specify both
     - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
-- Function
-  - rest: use ... to store all values as array assigned to variable
-    `function multipleVariable( first, ...rest ) { CODE }`
