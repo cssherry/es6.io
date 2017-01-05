@@ -1,5 +1,5 @@
 **Table of Contents**
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 
 - [Variables](#variables)
 - [Functions](#functions)
@@ -9,6 +9,7 @@
 - [For of loop](#for-of-loop)
 - [Array improvements](#array-improvements)
 - [Spread/Rest Operator](#spreadrest-operator)
+- [Object Literal](#object-literal)
 - [General](#general)
 
 <!-- /TOC -->
@@ -256,9 +257,21 @@
     - Spread into function
       - `[1, 2].push(...[3, 4])` instead of `[1, 2].push.apply([1, 2], [3, 4])`
 
+# Object Literal Improvements
+- if key and value are same name, don't need to specify both
+  - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
+- Shorthand for creating object functions (see functions section)
+- Assign template as porperty names
+```
+const key = 'nanook'
+const value = 'tabby'
+
+{
+  [key]: value, // always able to do
+  [`${key}2`]: value, // new ability to compute key in ES6
+}
+```
+
 # General
 - console
   - console.table(object) - will display map function in table along with object
-- Objects
-  - if key and value are same name, don't need to specify both
-    - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
