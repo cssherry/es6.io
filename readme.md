@@ -192,6 +192,29 @@
 - Reassignment: creates array and reassign to variables, no need for tmp variable
   - to switch 2 values: `[firstValue, secondValue] = [secondValue, firstValue]`
 
+# For of loop
+- Loop over any iterable: arguments, array, string, map, generator, set, dom collection, etc -- anything with Symbol.iterator
+- Old loops
+  - for loop -- strange syntax
+  - forEach -- can't use `break` or `continue`
+  - for in -- only passes on index values, but also includes prototype functions and the array's direct properties
+- Benefits:
+  - Allows use of `break` or `continue`
+  - Can iterate through generators (eg: `array.entries()`)
+  - Can loop over lots of stuff that aren't array like arguments or dom collections (though new dom elements have `forEach` function now)
+  - ES2017 has Object.entries(), available through polyfill. However, for now, use Object.keys(objectInstance) or `for in`
+
+  ```
+  // Use const so that val is scoped for each loop
+  for (const val of arrayInstance) {
+    CODE
+  }
+
+  for (const [i, val] of arrayInstance.entries()) {
+    CODE
+  }
+  ```
+
 # General
 - console
   - console.table(object) - will display map function in table along with object
