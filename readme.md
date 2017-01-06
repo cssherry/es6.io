@@ -272,6 +272,50 @@ const value = 'tabby';
   [`${key}2`]: value, // new ability to compute key in ES6
 };
 ```
+
+# Promises
+- fetch
+```
+const requestPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
+
+requestPromise
+  .then(data => data.json())
+  .then(data => {console.log(data)})
+  .catch(err => {console.log(err)});
+```
+- Build custom promises to run something async
+```
+let err = true
+const requestPromise = new Promise((resolve, reject) => {
+  if (err) {
+    reject(Error('custom error parameter'))
+  } else {
+    resolve('custom parameter');
+  }
+  // if this returned a promise, would be able to find chain another .then statement
+});
+
+requestPromise
+  .then(data => {console.log(data)})
+  .catch(err => {console.log(err)});
+
+// can accept multiple promises and run them both at once
+// Waits for all promises to finish before running "then" callback
+Promise
+  .all([requestPromise, otherPromise])
+  .then(responses => {
+    [requestPromiseResult, otherPromiseResult] = responses;
+  })
+
+// If the two requests return json objects, need another promise
+Promise
+  .all([requestPromise, otherPromise])
+  .then(responses => {
+    return Promise.all(responses.map( res => res.json() ));
+  })
+  .then(responses => {
+    [requestPromiseResult, otherPromiseResult] = responses;
+  })
 ```
 
 # General
