@@ -10,6 +10,7 @@
 - [Array improvements](#array-improvements)
 - [Spread/Rest Operator](#spreadrest-operator)
 - [Object Literal Improvements](#object-literal-improvements)
+- [Promises](#promises)
 - [General](#general)
 
 <!-- /TOC -->
@@ -61,7 +62,7 @@
     - Uses fat arrow, don't need parenthesis when only 1 parameter, need parenthesis when no parameter
       <pre class="prettyprint">
       <code class="js">// Old style function
-      function(name) {
+      function test (name) {
         return `${name} is here`
       }
 
@@ -221,22 +222,22 @@
 
 # Array improvements
 - from
-  `Array.from(domList)`
+  `Array.from( domList )`
   `Array.from( domList, dom => dom.textContent )`
 - of
   - Creates array from items passed in
   - `Array.of(1, 2, 3, 4)` returns `[1, 2, 3, 4]`
 - find (just first instance)
   - argument is callback that returns true or false for each item in elements
-  `arrayInstance.find(item => item.attribute == 'desired item')`
+  `arrayInstance.find(item => item.attribute === 'desired item')`
 - findIndex (just first instance)
   - good for finding idx for deleting, etc
-  `arrayInstance.findIndex(item => item.attribute == 'desired item')`
+  `arrayInstance.findIndex(item => item.attribute === 'desired item')`
 - Useful old methods that return true/false
   - some
-    `arrayInstance.some(item => item.attribute == 'desired item')`
+    `arrayInstance.some(item => item.attribute === 'desired item')`
   - every
-    `arrayInstance.every(item => item.attribute == 'desired item')`
+    `arrayInstance.every(item => item.attribute === 'desired item')`
 
 # Spread/Rest Operator
 - Rest: use ... to store all values as array assigned to variable
