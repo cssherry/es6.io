@@ -11,6 +11,7 @@
 - [Spread/Rest Operator](#spreadrest-operator)
 - [Object Literal Improvements](#object-literal-improvements)
 - [Promises](#promises)
+- [Symbols](#symbols)
 - [General](#general)
 
 <!-- /TOC -->
@@ -318,6 +319,24 @@ Promise
   })
 ```
 
+# Symbols (New 7th Primitive Types)
+- In addition to current number, string, object, boolean, null, undefined primitive types
+- Is unique identifier, no naming collision
+- Uses:
+  - Unique keys within objects
+  ```
+  const itinerary = {
+    [Symbol('Spain')]: new Date('10/10/2016'),
+    [Symbol('France')]: new Date('10/12/2016'),
+    [Symbol('Italy')]: new Date('10/14/2016'),
+    [Symbol('Spain')]: new Date('10/15/2016'),
+  }
+
+  // To get data from itinerary, need to get symbol using getOwnPropertySymbols
+  const symbolArray = Object.getOwnPropertySymbols(itinerary);
+  const data = symbolArray.map( key => itinerary[key] );
+  ```
+  - Store classified data because not loopable with `for in` loop
 # General
 - console
   - console.table(object) - will display map function in table along with object
