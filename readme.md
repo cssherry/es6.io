@@ -9,7 +9,7 @@
 - [For of loop](#for-of-loop)
 - [Array improvements](#array-improvements)
 - [Spread/Rest Operator](#spreadrest-operator)
-- [Object Literal](#object-literal)
+- [Object Literal Improvements](#object-literal-improvements)
 - [General](#general)
 
 <!-- /TOC -->
@@ -169,9 +169,9 @@
       email: 'nanook@gmail.co',
       twitter: '@roarnookie'
     }
-  }
+  };
 
-  const { type, sound, testDefault = 'test' } = nanook; // saves as type and sound and uses default test for testDefault   
+  const { type, sound, testDefault = 'test' } = nanook; // saves as type and sound and uses default test for testDefault
   const { city:cy, state:st } = nanook.from; // saves as cy and st
 
   // Function where you don't need to worry about order of parameters
@@ -187,10 +187,10 @@
   - rest operator gives array of rest
   ```
   // 'extra element...' is ignored and not saved
-  [name, type, likes] = ['Nanook', 'cat', 'purring', 'extra element not needed']
+  [name, type, likes] = ['Nanook', 'cat', 'purring', 'extra element not needed'];
 
   // feather, string, cat tree are saved as elements in toys array
-  [officialName, ...toys] = ['Nanook the Awesome', 'feather', 'string', 'cat tree']
+  [officialName, ...toys] = ['Nanook the Awesome', 'feather', 'string', 'cat tree'];
 
   ```
 - Reassignment: creates array and reassign to variables, no need for tmp variable
@@ -225,7 +225,7 @@
   `Array.from( domList, dom => dom.textContent )`
 - of
   - Creates array from items passed in
-  - `Array.from(1, 2, 3, 4)` returns `[1, 2, 3, 4]`
+  - `Array.of(1, 2, 3, 4)` returns `[1, 2, 3, 4]`
 - find (just first instance)
   - argument is callback that returns true or false for each item in elements
   `arrayInstance.find(item => item.attribute == 'desired item')`
@@ -261,15 +261,16 @@
 - if key and value are same name, don't need to specify both
   - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
 - Shorthand for creating object functions (see functions section)
-- Assign template as porperty names
+- Assign template as property names
 ```
-const key = 'nanook'
-const value = 'tabby'
+const key = 'nanook';
+const value = 'tabby';
 
 {
   [key]: value, // always able to do
   [`${key}2`]: value, // new ability to compute key in ES6
-}
+};
+```
 ```
 
 # General
