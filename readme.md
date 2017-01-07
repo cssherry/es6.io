@@ -579,6 +579,36 @@ const catProxy = new Proxy(cat, {
   // After a few seconds, user2 will disappear from cleanList -- takes long time on chrome
   ```
 
+## Maps/Weak Maps
+- Map
+  - Similar to sets, but with key/values
+  - Can use object or dom element as key of map -- sort of as metadata dictionary
+  - Has size attribute
+
+  ```js
+  const usernames = new Map();
+  usernames.set('administrator', 0);
+  usernames.add('user1', 1);
+  usernames.add('user2', 2);
+
+  usernames.has('administrator'); // true
+  usernames.get('user1'); // 1
+
+  // deletes without needing index
+  usernames.delete('user1');
+
+  username.forEach(( id, name ) => console.log(name, id));
+
+  for (const [name, id] of usernames) {
+    console.log(name, id);
+  }
+
+  // clear info
+  username.clear();
+  ```
+- Weak Map
+  - no size, not enumerable, but is garbage collected (similar to set)
+
 # SETUP
 ## Linting: ESLint
 - Install ESLint to monitor code for js error -- by default all checks are off, but should enable either eslint:recommended or airbnb -- airbnb more strict than eslint:recommended
