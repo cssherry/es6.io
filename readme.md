@@ -449,6 +449,11 @@ function* getPrime(numberPrimes = 10) {
     return true;
   }
 }
+
+// Can loop through
+for (const primeNum of getPrime()) {
+  console.log(primeNum);
+}
 ```
 - Uses:
   - Can be iterated through with `for of` loop
