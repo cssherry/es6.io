@@ -12,6 +12,7 @@
 - [Object Literal Improvements](#object-literal-improvements)
 - [Promises](#promises)
 - [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
+- [Linting: ESLint](#linting-eslint)
 - [General](#general)
 
 <!-- /TOC -->
@@ -360,6 +361,57 @@ Promise
   const data = symbolArray.map( key => itinerary[key] );
   ```
   - Store classified data because not loopable with `for in` loop
+
+# Linting: ESLint
+- Install ESLint to monitor code for js error -- by default all checks are off, but should enable either eslint:recommended or airbnb -- airbnb more strict than eslint:recommended
+- Good to read the ESLint explanation for the error -- might not want to turn off
+- global eslint config in ~/.eslintrc if there's no eslintrc file within parent directories
+- To set globals within file:
+
+  ```
+  /* globals ga */
+  ```
+
+- To turn off lint feature
+
+  ```js
+  /* eslint-disable no-extend-native */
+
+  no-extend-native is DISABLED here
+
+  /* eslint-enable no-extend-native */
+
+  no-extend-native linting is ENABLED again
+  ```
+- Plugins available for linting within different environments (eg: html or markdown)
+- `eslint *.html` or `eslint --ext html` will lint all html files
+- `eslint --fix` will fix specified file -- only works for .js files currently
+- ESLint git hooks :)
+  - Prevents user from committing to repo unless they pass linting
+  - Add file within the repo's `.git > hooks` folder.
+
+  ```bash
+  #!/bin/bash
+  files=$(git diff --cached --name-only | grep '\.jsx\?$')
+
+  # Prevent ESLint help message if no files matched
+  if [[ $files = "" ]] ; then
+    exit 0
+  fi
+
+  failed=0
+  for file in ${files}; do
+    git show :$file | eslint $file
+    if [[ $? != 0 ]] ; then
+      failed=1
+    fi
+  done;
+
+  if [[ $failed != 0 ]] ; then
+    echo "🚫🚫🚫 ESLint failed, git commit denied!"
+    exit $failed
+  fi
+  ```
 # General
 - console
   - console.table(object) - will display map function in table along with object
