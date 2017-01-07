@@ -15,6 +15,7 @@
 - [Classes](#classes)
 - [Generators](#generators)
 - [Proxies](#proxies)
+- [Sets/WeakSets](#setsweaksets)
 - [Linting: ESLint](#linting-eslint)
 - [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
 - [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
@@ -512,6 +513,60 @@ const catProxy = new Proxy(cat, {
   - Warn if try to overwrite existing key or use improperly formatted key
 
 # Sets/WeakSets
+- Set
+  - unique array that can't access item individually through index
+
+  ```js
+  const usernames = new Set(['test']);
+  usernames.add('administrator');
+  usernames.add('user1');
+  usernames.add('user2');
+
+  usernames.has('test'); // true
+
+  // can't add repeat
+  usernames.add('test');
+
+  usernames.size(); // 4
+
+  // deletes without needing index
+  usernames.delete('user2');
+
+  // returns generator -- can use usernames in for of loop
+  const a = usernames.values();
+  usernames.keys(); // same as .values
+  usernames.entries(); // returns back nested arrays with duplicate first/second element
+
+  a.next(); // remove test
+
+  usernames.add("ppp") // adds ppp to both a and usernames
+
+  a // now has administrator, user1, user2, and ppp
+
+  // clears all values
+  usernames.clear();
+  ```
+- Weakset
+  - can only contain objects
+  - cannot loop over it
+  - no clear method because once reference to item in set disappears, the item disappears from set -- less memory leak
+
+  ```js
+  let user1 = {
+    name: "administrator",
+    gender: "F"
+  }
+  let user2 = {
+    name: "trial",
+    gender: "F"
+  }
+
+  const cleanList = new WeakSet([user1, user2]);
+
+  // Let's delete the trial user
+  user2 = null;
+  // After a few seconds, user2 will disappear from cleanList -- takes long time on chrome
+  ```
 # Linting: ESLint
 - Install ESLint to monitor code for js error -- by default all checks are off, but should enable either eslint:recommended or airbnb -- airbnb more strict than eslint:recommended
 - Good to read the ESLint explanation for the error -- might not want to turn off
