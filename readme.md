@@ -61,16 +61,16 @@
     - **doesn't rebind `this`** when used in other function
       - inherited from parent scope (eg: in event listener, doesn't bind to dom)
 
-      <pre class="prettyprint">
-      <code class="js">const $dom = $(.selector)
+      ```js
+      const $dom = $(.selector)
       $dom.on('click', function () {
         this.classList.toggle('new-class');
         setTimeout( {} => {
           // this object is the same as the this in scope directly outside setTimeout
           this.classList.toggle('newer-class');
         }, 500);
-      });</code>
-      </pre>
+      });
+      ```
   - Use:
     - Uses fat arrow, don't need parenthesis when only 1 parameter, need parenthesis when no parameter
 
@@ -98,27 +98,26 @@
       ```
   - **Always anonymous function** so not good stack-trace, but can assign to const or variables
   - **default values** in functions now supported
-    <pre class="prettyprint">
-    <code class="js">function testDefault(first, second = 'second', third = 'third'){
+    ```js
+    function testDefault(first, second = 'second', third = 'third'){
       return `${first} ${second} ${third}`
     }
 
     // to skip variable, just pass in "undefined"
     testDefault(1, undefined, 3)
-    </code>
-    </pre>
+    ```
   - Don't use arrow functions when need access to function's `this` objects:
     - in event handler
     - as property of object
 
-    <pre class="prettyprint">
-    <code class="js">const objectType = {
+    ```js
+    const objectType = {
       count: 0,
       add() {
         this.count++
       }
-    }</code>
-    </pre>
+    }
+    ```
 
   - Don't add as prototype function
   - When need `arguments` object
