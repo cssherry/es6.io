@@ -587,6 +587,9 @@ const catProxy = new Proxy(cat, {
   }
 });
 ```
+- Uses:
+  - Cleanup values for object (eg: phone numbers)
+  - Warn if try to overwrite existing key or use improperly formatted key
 
 # Sets/WeakSets
 # General
