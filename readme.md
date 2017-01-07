@@ -445,4 +445,6 @@ Promise
     - named export -- export as specific name -- import surrounded with curly braces
 # General
 - console
-  - console.table(object) - will display map function in table along with object
+  - `console.table(object)` - will display `.map(function)` in table along with object
+- terminal
+  - `ll` shows detailed list of items in folder
