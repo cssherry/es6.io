@@ -1,29 +1,34 @@
 **Table of Contents**
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 
-- [Variables](#variables)
-- [Functions](#functions)
-- [Template/Strings](#templatestrings)
-- [String Improvements](#string-improvements)
-- [Destructuring](#destructuring)
-- [For of loop](#for-of-loop)
-- [Array improvements](#array-improvements)
-- [Spread/Rest Operator](#spreadrest-operator)
-- [Object Literal Improvements](#object-literal-improvements)
-- [Promises](#promises)
-- [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
-- [Classes](#classes)
-- [Generators](#generators)
-- [Proxies](#proxies)
-- [Sets/WeakSets](#setsweaksets)
-- [Linting: ESLint](#linting-eslint)
-- [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
-- [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
+- [BASICS](#basics)
+	- [Variables](#variables)
+	- [Functions](#functions)
+	- [Template/Strings](#templatestrings)
+	- [String Improvements](#string-improvements)
+	- [Destructuring](#destructuring)
+	- [For of loop](#for-of-loop)
+	- [Array improvements](#array-improvements)
+	- [Spread/Rest Operator](#spreadrest-operator)
+	- [Object Literal Improvements](#object-literal-improvements)
+- [MORE COMPLEX](#more-complex)
+	- [Promises](#promises)
+	- [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
+	- [Classes](#classes)
+	- [Generators](#generators)
+	- [Proxies](#proxies)
+	- [Sets/WeakSets](#setsweaksets)
+	- [Maps/Weak Maps](#mapsweak-maps)
+- [SETUP](#setup)
+	- [Linting: ESLint](#linting-eslint)
+	- [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
+	- [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
 - [General](#general)
 
 <!-- /TOC -->
 
-# Variables
+# BASICS
+## Variables
 - Block scope:
   - **let**: can be updated
   - **const**: immutable *binding*, properties of object can be updated
@@ -45,7 +50,7 @@
   - can be created/updated
   - if no function, becomes globally scoped to window
 
-# Functions
+## Functions
 - Arrow functions
   - Benefits
     - **concise**
@@ -118,7 +123,7 @@
   - Don't add as prototype function
   - When need `arguments` object
 
-# Template/Strings
+## Template/Strings
   - Template Strings/Literals: uses backticks: ``` `you are ${test}` ``` will write `test` variable into string. Can run JavaScripts inside of ${}
   - **multiline** strings now possible with backticks as well
   - Can nest template string within template string: map, ternary
@@ -170,12 +175,12 @@
     const sentence = templateTag`Comparing ${first} to ${second}<script>alert("Running bad JavaScript");</script>`;
     ```
 
-# String Improvements
+## String Improvements
 - startsWith/endsWith: parameters: string to search for, optionally how many characters to ignore at the beginning
 - includes
 - repeat: can create left pad function, will repeat string however much specified
 
-# Destructuring
+## Destructuring
 - Object
   - Easily set object properties as variables
   - Nice for extracting nested data or returning multiple values from a function (by returning object and destructuring immediately)
@@ -224,7 +229,7 @@
 - Reassignment: creates array and reassign to variables, no need for tmp variable
   - to switch 2 values: `[firstValue, secondValue] = [secondValue, firstValue]`
 
-# For of loop
+## For of loop
 - Loop over any iterable: arguments, array, string, map, generator, set, dom collection, etc -- anything with Symbol.iterator
 - Old loops
   - for loop -- strange syntax
@@ -247,7 +252,7 @@
   }
   ```
 
-# Array improvements
+## Array improvements
 - from
   `Array.from( domList )`
   `Array.from( domList, dom => dom.textContent )`
@@ -266,7 +271,7 @@
   - every
     `arrayInstance.every(item => item.attribute === 'desired item')`
 
-# Spread/Rest Operator
+## Spread/Rest Operator
 - Rest: use ... to store all values as array assigned to variable
   - Can be used to put all iterable into 1 array
     `function multipleVariable( first, second, ...rest ) { CODE }`
@@ -285,7 +290,7 @@
     - Spread into function
       - `[1, 2].push(...[3, 4])` instead of `[1, 2].push.apply([1, 2], [3, 4])`
 
-# Object Literal Improvements
+## Object Literal Improvements
 - if key and value are same name, don't need to specify both
   - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
 - Shorthand for creating object functions (see functions section)
@@ -301,7 +306,8 @@ const value = 'tabby';
 };
 ```
 
-# Promises
+# MORE COMPLEX
+## Promises
 - fetch
 
 ```js
@@ -348,7 +354,7 @@ Promise
   })
 ```
 
-# Symbols (New 7th Primitive Types)
+## Symbols (New 7th Primitive Types)
 - In addition to current number, string, object, boolean, null, undefined primitive types
 - Is unique identifier, no naming collision
 - Uses:
@@ -368,7 +374,7 @@ Promise
   ```
   - Store classified data because not loopable with `for in` loop
 
-# Classes
+## Classes
 - New way to write prototype inheritance
 - Declaration
 
@@ -424,7 +430,7 @@ const Animal = class {
 - Requires:
   - constructor property function
 
-# Generators
+## Generators
 - Function that can start/stop and pause
 
 ```js
@@ -487,7 +493,7 @@ for (const primeNum of getPrime()) {
   waterfall.next(); // start process
   ```
 
-# Proxies
+## Proxies
 - Overwrites default behavior of object
 - accepts target and handle as parameters
 
@@ -517,7 +523,7 @@ const catProxy = new Proxy(cat, {
   - Cleanup values for object (eg: phone numbers)
   - Warn if try to overwrite existing key or use improperly formatted key
 
-# Sets/WeakSets
+## Sets/WeakSets
 - Set
   - unique array that can't access item individually through index
 
@@ -572,7 +578,9 @@ const catProxy = new Proxy(cat, {
   user2 = null;
   // After a few seconds, user2 will disappear from cleanList -- takes long time on chrome
   ```
-# Linting: ESLint
+
+# SETUP
+## Linting: ESLint
 - Install ESLint to monitor code for js error -- by default all checks are off, but should enable either eslint:recommended or airbnb -- airbnb more strict than eslint:recommended
 - Good to read the ESLint explanation for the error -- might not want to turn off
 - global eslint config in ~/.eslintrc if there's no eslintrc file within parent directories
@@ -623,7 +631,7 @@ const catProxy = new Proxy(cat, {
   fi
   ```
 
-# Javascript Modules (old technology, but really prevalent in ES6)
+## Javascript Modules (old technology, but really prevalent in ES6)
 - import JavaScript modules rather than using scrip tags -- currently not really supported by modern browsers yet
 - Need package.json + webpack to bundle js to make ES6 modules work
 - To create app:
@@ -638,7 +646,7 @@ const catProxy = new Proxy(cat, {
     - systemJS (quickly makes app works -- no need to npm install -- just include script and run through server) with jspm
     - Browserify
 
-# Set up ES6 for all browsers
+## Set up ES6 for all browsers
 - To babelify (syntax to ES5)
   - `npm install babel-cli babel-preset-es2015 --save`
   - Create .babelrc file or define babel within package.json
