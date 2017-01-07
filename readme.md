@@ -146,6 +146,22 @@
 
     const sentence = templateTag`Comparing ${first} to ${second}`;
     ```
+    - Sanitize user input within templates using https://github.com/cure53/DOMPurify
+
+    ```js
+    function templateTag(strings, ...values) {
+      let str = strings[0];
+      values.forEach( (string, i) => {
+        str += "these " + DOMPurify.sanitize(values[i]) + strings[i + 1];
+      });
+      return str;
+    }
+
+    const first = "oranges";
+    const second = "apples";
+
+    const sentence = templateTag`Comparing ${first} to ${second}<script>alert("Running bad JavaScript");</script>`;
+    ```
 
 # String Improvements
 - startsWith/endsWith: parameters: string to search for, optionally how many characters to ignore at the beginning
