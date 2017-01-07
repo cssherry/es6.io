@@ -15,6 +15,7 @@
 - [Linting: ESLint](#linting-eslint)
 - [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
 - [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
+- [Classes](#classes)
 - [General](#general)
 
 <!-- /TOC -->
@@ -443,6 +444,62 @@ Promise
   - to use outside module, need to export variables
     - default export (main function) -- can be imported as any name
     - named export -- export as specific name -- import surrounded with curly braces
+
+# Classes
+- New way to write prototype inheritance
+- Declaration
+
+```js
+class Animal {
+  // Runs whenever new Animal is called
+  constructor (name, species) {
+    this.name = name;
+    this.species = species;
+  }
+
+  // Prototype method
+  makeNoise() {
+    console.log("GRRRRRR");
+  }
+
+  // Class method
+  static makeTons () {
+    console.log("SO MANY ANIMALS!");
+  }
+
+  // Setters/getters
+  set treat (type) {
+    this.treat = type;
+  }
+  get treat () {
+    console.log(`${this.name} loves to eat ${this.type}`);
+  }
+}
+
+// Can extend classes -- don't go beyond 2 - 3
+// Can also extend built-in like Arrays
+class Cat extends Animal {
+  constructor (name, type) {
+    super(name, 'cat');
+    this.type = 'fluffy';
+  }
+  purr(){
+    this.makeNoise();
+    console.log("purrrrrr");
+    this.makeNoise();
+  }
+}
+```
+
+- Expression
+
+```js
+const Animal = class {
+
+}
+```
+- Requires:
+  - constructor property function
 # General
 - console
   - `console.table(object)` - will display `.map(function)` in table along with object
