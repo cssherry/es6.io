@@ -16,6 +16,7 @@
 - [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
 - [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
 - [Classes](#classes)
+- [Generators](#generators)
 - [General](#general)
 
 <!-- /TOC -->
@@ -500,6 +501,64 @@ const Animal = class {
 ```
 - Requires:
   - constructor property function
+
+# Generators
+- Function that can start/stop and pause
+
+```js
+// Indicate generator with *
+function* getPrime(numberPrimes = 10) {
+  let curr = 2;
+  while (numberPrimes > 0) {
+    if (isPrime(curr)) {
+      // yield stops the code when .next is called
+      numberPrimes--
+      yield curr;
+    }
+    curr++
+  }
+
+  function isPrime(num) {
+    for (let i = 2; i < num; i++) {
+      if (num % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+```
+- Uses:
+  - Can be iterated through with `for of` loop
+  - Waterfall dependent ajax requests without nesting them
+
+  ```js
+  // What happens
+  function getNext(url, data) {
+    $.ajax({
+      url: url,
+      data: data,
+      type: 'POST',
+    })
+    .fail(function (resp) {
+      alert('Failed',);
+    })
+    .success(function(resp) {
+      // resp will get passed on and stored as result of yield getNext()
+      waterfall.next(resp);
+    });
+  }
+
+  // Generator function
+  function* ajaxRequests() {
+    const sendEmail = yield getNext('http://importanturl.com/1');
+    const getStatus = yield getNext('http://importanturl.com/2', sendEmail);
+  }
+
+  // Code which is initially run
+  const waterfall = ajaxRequests();
+  waterfall.next(); // start process
+  ```
 # General
 - console
   - `console.table(object)` - will display `.map(function)` in table along with object
