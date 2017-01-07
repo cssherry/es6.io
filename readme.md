@@ -12,12 +12,12 @@
 - [Object Literal Improvements](#object-literal-improvements)
 - [Promises](#promises)
 - [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
-- [Linting: ESLint](#linting-eslint)
-- [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
-- [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
 - [Classes](#classes)
 - [Generators](#generators)
 - [Proxies](#proxies)
+- [Linting: ESLint](#linting-eslint)
+- [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
+- [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
 - [General](#general)
 
 <!-- /TOC -->
@@ -367,86 +367,6 @@ Promise
   ```
   - Store classified data because not loopable with `for in` loop
 
-# Linting: ESLint
-- Install ESLint to monitor code for js error -- by default all checks are off, but should enable either eslint:recommended or airbnb -- airbnb more strict than eslint:recommended
-- Good to read the ESLint explanation for the error -- might not want to turn off
-- global eslint config in ~/.eslintrc if there's no eslintrc file within parent directories
-- To set globals within file:
-
-  ```
-  /* globals ga */
-  ```
-
-- To turn off lint feature
-
-  ```js
-  /* eslint-disable no-extend-native */
-
-  no-extend-native is DISABLED here
-
-  /* eslint-enable no-extend-native */
-
-  no-extend-native linting is ENABLED again
-  ```
-- Plugins available for linting within different environments (eg: html or markdown)
-- `eslint *.html` or `eslint --ext html` will lint all html files
-- `eslint --fix` will fix specified file -- only works for .js files currently
-- ESLint git hooks :)
-  - Prevents user from committing to repo unless they pass linting
-  - Add file within the repo's `.git > hooks` folder.
-
-  ```bash
-  #!/bin/bash
-  files=$(git diff --cached --name-only | grep '\.jsx\?$')
-
-  # Prevent ESLint help message if no files matched
-  if [[ $files = "" ]] ; then
-    exit 0
-  fi
-
-  failed=0
-  for file in ${files}; do
-    git show :$file | eslint $file
-    if [[ $? != 0 ]] ; then
-      failed=1
-    fi
-  done;
-
-  if [[ $failed != 0 ]] ; then
-    echo "🚫🚫🚫 ESLint failed, git commit denied!"
-    exit $failed
-  fi
-  ```
-
-# Javascript Modules (old technology, but really prevalent in ES6)
-- import JavaScript modules rather than using scrip tags -- currently not really supported by modern browsers yet
-- Need package.json + webpack to bundle js to make ES6 modules work
-- To create app:
-  - have main js file
-  - `npm init` to create package.json to save references to npm installed packages (like `jquery` from `npm install jquery`) -- pretty much all packages are available through npm install
-  - `npm install webpack@beta --save-dev` to work with modules
-  - `npm install babel-core babel-loader babel-core babel-preset-es2015-native-modules --save-dev` to convert from ES6 to ES5 but supporting modules
-  - Create webpack.config.js file
-  - Define 'build' within package.json > scripts
-  - build with `npm run build` -- will run as long as running code
-  - Alternatives:
-    - systemJS (quickly makes app works -- no need to npm install -- just include script and run through server) with jspm
-    - Browserify
-
-# Set up ES6 for all browsers
-- To babelify (syntax to ES5)
-  - `npm install babel-cli babel-preset-es2015 --save`
-  - Create .babelrc file or define babel within package.json
-  - define 'babel' within package.json > scripts
-- To polyfill (functions to ES6)
-  - Provide all polyfills: `import "babel-polyfill"`
-  - Provide polyfill specific to user agent: [Polyfill.io](https://qa.polyfill.io/v2/docs/)
-- Custom modules
-  - variables are scoped within the module
-  - to use outside module, need to export variables
-    - default export (main function) -- can be imported as any name
-    - named export -- export as specific name -- import surrounded with curly braces
-
 # Classes
 - New way to write prototype inheritance
 - Declaration
@@ -592,6 +512,86 @@ const catProxy = new Proxy(cat, {
   - Warn if try to overwrite existing key or use improperly formatted key
 
 # Sets/WeakSets
+# Linting: ESLint
+- Install ESLint to monitor code for js error -- by default all checks are off, but should enable either eslint:recommended or airbnb -- airbnb more strict than eslint:recommended
+- Good to read the ESLint explanation for the error -- might not want to turn off
+- global eslint config in ~/.eslintrc if there's no eslintrc file within parent directories
+- To set globals within file:
+
+  ```
+  /* globals ga */
+  ```
+
+- To turn off lint feature
+
+  ```js
+  /* eslint-disable no-extend-native */
+
+  no-extend-native is DISABLED here
+
+  /* eslint-enable no-extend-native */
+
+  no-extend-native linting is ENABLED again
+  ```
+- Plugins available for linting within different environments (eg: html or markdown)
+- `eslint *.html` or `eslint --ext html` will lint all html files
+- `eslint --fix` will fix specified file -- only works for .js files currently
+- ESLint git hooks :)
+  - Prevents user from committing to repo unless they pass linting
+  - Add file within the repo's `.git > hooks` folder.
+
+  ```bash
+  #!/bin/bash
+  files=$(git diff --cached --name-only | grep '\.jsx\?$')
+
+  # Prevent ESLint help message if no files matched
+  if [[ $files = "" ]] ; then
+    exit 0
+  fi
+
+  failed=0
+  for file in ${files}; do
+    git show :$file | eslint $file
+    if [[ $? != 0 ]] ; then
+      failed=1
+    fi
+  done;
+
+  if [[ $failed != 0 ]] ; then
+    echo "🚫🚫🚫 ESLint failed, git commit denied!"
+    exit $failed
+  fi
+  ```
+
+# Javascript Modules (old technology, but really prevalent in ES6)
+- import JavaScript modules rather than using scrip tags -- currently not really supported by modern browsers yet
+- Need package.json + webpack to bundle js to make ES6 modules work
+- To create app:
+  - have main js file
+  - `npm init` to create package.json to save references to npm installed packages (like `jquery` from `npm install jquery`) -- pretty much all packages are available through npm install
+  - `npm install webpack@beta --save-dev` to work with modules
+  - `npm install babel-core babel-loader babel-core babel-preset-es2015-native-modules --save-dev` to convert from ES6 to ES5 but supporting modules
+  - Create webpack.config.js file
+  - Define 'build' within package.json > scripts
+  - build with `npm run build` -- will run as long as running code
+  - Alternatives:
+    - systemJS (quickly makes app works -- no need to npm install -- just include script and run through server) with jspm
+    - Browserify
+
+# Set up ES6 for all browsers
+- To babelify (syntax to ES5)
+  - `npm install babel-cli babel-preset-es2015 --save`
+  - Create .babelrc file or define babel within package.json
+  - define 'babel' within package.json > scripts
+- To polyfill (functions to ES6)
+  - Provide all polyfills: `import "babel-polyfill"`
+  - Provide polyfill specific to user agent: [Polyfill.io](https://qa.polyfill.io/v2/docs/)
+- Custom modules
+  - variables are scoped within the module
+  - to use outside module, need to export variables
+    - default export (main function) -- can be imported as any name
+    - named export -- export as specific name -- import surrounded with curly braces
+
 # General
 - console
   - `console.table(object)` - will display `.map(function)` in table along with object
