@@ -17,6 +17,7 @@
 - [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
 - [Classes](#classes)
 - [Generators](#generators)
+- [Proxies](#proxies)
 - [General](#general)
 
 <!-- /TOC -->
@@ -559,6 +560,35 @@ function* getPrime(numberPrimes = 10) {
   const waterfall = ajaxRequests();
   waterfall.next(); // start process
   ```
+
+# Proxies
+- Overwrites default behavior of object
+- accepts target and handle as parameters
+
+```js
+// The object we're going to write proxy for
+const cat = {
+  sound: 'purring',
+  treat: 'salmon',
+  hates: 'trains'
+}
+
+// Proxy that will trap default operations for Object
+const catProxy = new Proxy(cat, {
+  // Overwrites cat[key]
+  get(target, name) {
+    console.log("This would have returned ${ target [name] }");
+  },
+  // Overwrites cat[key] = value
+  set(target, name, value){
+    if (typeof value === "string") {
+      target[name] = `Better String For ${ value.toUpperCase() }`;
+    }
+  }
+});
+```
+
+# Sets/WeakSets
 # General
 - console
   - `console.table(object)` - will display `.map(function)` in table along with object
