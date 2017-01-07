@@ -13,6 +13,7 @@
 - [Promises](#promises)
 - [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
 - [Linting: ESLint](#linting-eslint)
+- [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
 - [General](#general)
 
 <!-- /TOC -->
@@ -412,6 +413,22 @@ Promise
     exit $failed
   fi
   ```
+
+# Javascript Modules (old technology, but really prevalent in ES6)
+- import JavaScript modules rather than using scrip tags -- currently not really supported by modern browsers yet
+- Need package.json + webpack to bundle js to make ES6 modules work
+- To create app:
+  - have main js file
+  - `npm init` to create package.json to save references to npm installed packages (like `jquery` from `npm install jquery`) -- pretty much all packages are available through npm install
+  - `npm install webpack@beta --save-dev` to work with modules
+  - `npm install babel-core babel-loader babel-core babel-preset-es2015-native-modules --save-dev` to convert from ES6 to ES5 but supporting modules
+  - Create webpack.config.js file
+  - Define 'build' within package.json > scripts
+  - build with `npm run build` -- will run as long as running code
+  - Alternatives:
+    - systemJS (quickly makes app works -- no need to npm install -- just include script and run through server) with jspm
+    - Browserify
+
 # General
 - console
   - console.table(object) - will display map function in table along with object
