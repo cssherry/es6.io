@@ -11,7 +11,7 @@
 - [Spread/Rest Operator](#spreadrest-operator)
 - [Object Literal Improvements](#object-literal-improvements)
 - [Promises](#promises)
-- [Symbols](#symbols)
+- [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
 - [General](#general)
 
 <!-- /TOC -->
@@ -61,8 +61,9 @@
       </pre>
   - Use:
     - Uses fat arrow, don't need parenthesis when only 1 parameter, need parenthesis when no parameter
-      <pre class="prettyprint">
-      <code class="js">// Old style function
+
+      ```js
+      // Old style function
       function test (name) {
         return `${name} is here`
       }
@@ -81,8 +82,8 @@
       name => `${name} is here`
 
       // one liner without parameter
-      () => `name is here`</code>
-      </pre>
+      () => `name is here`
+      ```
   - **Always anonymous function** so not good stack-trace, but can assign to const or variables
   - **default values** in functions now supported
     <pre class="prettyprint">
@@ -116,7 +117,7 @@
   - Can nest template string within template string: map, ternary
   - to make code more readable, don't nest too many functions inside of backticks, use helper function
 
-  ```
+  ```js
   function createLi (list) {
     return list.map( number => `<li> ${number} </li>` ).join('');
   }
@@ -131,7 +132,7 @@
     - function's first parameter is array of strings in template. Other parameters are the values of inserts for the template (1 less than length of array from first parameter)
     - can also pass in string, which will then get passed on as a value to the template tag to add custom tags around values, sanitize specific strings, etc
 
-    ```
+    ```js
     function templateTag(strings, ...values) {
       let str = strings[0];
       values.forEach( (string, i) => {
@@ -156,7 +157,8 @@
   - Easily set object properties as variables
   - Nice for extracting nested data or returning multiple values from a function (by returning object and destructuring immediately)
   - Can also set default for destructuring
-  ```
+
+  ```js
   const nanook = {
     type: 'cat',
     likes: 'flopping over',
@@ -187,7 +189,8 @@
 - Array
   - ignores extra elements
   - rest operator gives array of rest
-  ```
+
+  ```js
   // 'extra element...' is ignored and not saved
   [name, type, likes] = ['Nanook', 'cat', 'purring', 'extra element not needed'];
 
@@ -210,7 +213,7 @@
   - Can loop over lots of stuff that aren't array like arguments or dom collections (though new dom elements have `forEach` function now)
   - ES2017 has Object.entries(), available through polyfill. However, for now, use Object.keys(objectInstance) or `for in`
 
-  ```
+  ```js
   // Use const so that val is scoped for each loop
   for (const val of arrayInstance) {
     CODE
@@ -264,7 +267,8 @@
   - eg: `{ name, race, test: 'test string' }` is the same as `{ name: name, race: race, test: 'test string' }`
 - Shorthand for creating object functions (see functions section)
 - Assign template as property names
-```
+
+```js
 const key = 'nanook';
 const value = 'tabby';
 
@@ -276,7 +280,8 @@ const value = 'tabby';
 
 # Promises
 - fetch
-```
+
+```js
 const requestPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
 
 requestPromise
@@ -285,7 +290,8 @@ requestPromise
   .catch(err => {console.log(err)});
 ```
 - Build custom promises to run something async
-```
+
+```js
 let err = true
 const requestPromise = new Promise((resolve, reject) => {
   if (err) {
@@ -324,7 +330,8 @@ Promise
 - Is unique identifier, no naming collision
 - Uses:
   - Unique keys within objects
-  ```
+
+  ```js
   const itinerary = {
     [Symbol('Spain')]: new Date('10/10/2016'),
     [Symbol('France')]: new Date('10/12/2016'),
