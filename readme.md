@@ -474,7 +474,7 @@ for (const primeNum of getPrime()) {
       type: 'POST',
     })
     .fail(function (resp) {
-      alert('Failed',);
+      alert('Failed');
     })
     .success(function(resp) {
       // resp will get passed on and stored as result of yield getNext()
