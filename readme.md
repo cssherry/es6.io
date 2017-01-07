@@ -14,6 +14,7 @@
 - [Symbols (New 7th Primitive Types)](#symbols-new-7th-primitive-types)
 - [Linting: ESLint](#linting-eslint)
 - [Javascript Modules (old technology, but really prevalent in ES6)](#javascript-modules-old-technology-but-really-prevalent-in-es6)
+- [Set up ES6 for all browsers](#set-up-es6-for-all-browsers)
 - [General](#general)
 
 <!-- /TOC -->
@@ -429,6 +430,19 @@ Promise
     - systemJS (quickly makes app works -- no need to npm install -- just include script and run through server) with jspm
     - Browserify
 
+# Set up ES6 for all browsers
+- To babelify (syntax to ES5)
+  - `npm install babel-cli babel-preset-es2015 --save`
+  - Create .babelrc file or define babel within package.json
+  - define 'babel' within package.json > scripts
+- To polyfill (functions to ES6)
+  - Provide all polyfills: `import "babel-polyfill"`
+  - Provide polyfill specific to user agent: [Polyfill.io](https://qa.polyfill.io/v2/docs/)
+- Custom modules
+  - variables are scoped within the module
+  - to use outside module, need to export variables
+    - default export (main function) -- can be imported as any name
+    - named export -- export as specific name -- import surrounded with curly braces
 # General
 - console
   - console.table(object) - will display map function in table along with object
